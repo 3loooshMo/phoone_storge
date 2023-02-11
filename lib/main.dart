@@ -6,6 +6,7 @@ import 'package:phone_store_app/utils/core/theme_manager.dart';
 import 'package:phone_store_app/view/widgets/bottom_app_bar.dart';
 import 'firebase_options.dart';
 Future<void> main() async{
+
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await Firebase.initializeApp(

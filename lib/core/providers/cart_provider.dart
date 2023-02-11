@@ -17,11 +17,13 @@ class CartController extends GetxController {
     return total.value;
   }
 
-  void checkProductAddedToCart(productId) {
+  bool checkProductAddedToCart(productId) {
     if (_cartItems.containsKey(productId)) {
       checkProductAddedTo.value = true;
+      return true;
     } else {
       checkProductAddedTo.value = false;
+      return false;
     }
   }
 
@@ -63,6 +65,7 @@ class CartController extends GetxController {
       String productId, String title, double price, String? imageUrl) {
     if (_cartItems.containsKey(productId)) {
       // Increase quantity
+      checkProductAddedToCart(productId);
       _cartItems.update(
           productId,
           (existingCartItem) => CartItem(
@@ -73,6 +76,7 @@ class CartController extends GetxController {
                 quantity: existingCartItem.quantity! + 1,
               ));
     } else {
+      checkProductAddedToCart(productId);
       // Add product to cart
       _cartItems.putIfAbsent(
           productId,
